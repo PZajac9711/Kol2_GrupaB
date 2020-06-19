@@ -9,7 +9,6 @@ import {ActivatedRoute} from '@angular/router';
 })
 export class PzForumComponent implements OnInit {
   data$: any;
-  single$: any;
 
   constructor(private dataService: PzDataService) {
   }
@@ -21,12 +20,6 @@ export class PzForumComponent implements OnInit {
   getAllPosts() {
     this.dataService.getPost().subscribe(response => {
       this.data$ = response;
-    });
-  }
-
-  more(id) {
-    this.dataService.getPostById(id).subscribe(response => {
-      this.single$ = response;
     });
   }
 }

@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
+import {PzDataService} from '../../services/pz-data.service';
 
 @Component({
   selector: 'app-pz-forum-details',
@@ -6,10 +8,23 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./pz-forum-details.component.css']
 })
 export class PzForumDetailsComponent implements OnInit {
+  id;
+  single$: any;
 
-  constructor() { }
-
-  ngOnInit(): void {
+  constructor(private routes: ActivatedRoute, private httpData: PzDataService) {
   }
 
+  ngOnInit(): void {
+    this.routes.paramMap.subscribe(params => {
+      this.id = params.get('id');
+    });
+    this.more(this.id);
+  }
+
+  more(id) {
+    this.httpData.getPostById(id).subscribe(response => {
+      console.log(response);
+      this.single$ = response;
+    });
+  }
 }

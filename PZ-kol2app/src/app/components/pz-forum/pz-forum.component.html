@@ -3,5 +3,5 @@
   <p>{{item?.title}}</p>
   <p>{{item?.text}}</p>
   <img src="{{item?.image}}"/>
-  <a (click)="more(item?.id)">More<app-pz-forum-item [data]="single$"></app-pz-forum-item></a>
+  <app-pz-forum-item [data]="item"></app-pz-forum-item>
 </div>
